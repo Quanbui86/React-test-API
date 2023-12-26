@@ -5,8 +5,8 @@ import './App.css';
 function App() {
   const [data, setData] = useState(null)
   const [filmData, setFilmData] = useState(null)
-  const [selectedGenreName, setSelectedGenreName] = useState('Action');
-  const [selectedGenreId, setSelectedGenreId] = useState(28);
+  const [selectedGenreName, setSelectedGenreName] = useState('');
+  const [selectedGenreId, setSelectedGenreId] = useState('');
 const get = ()=>{
   fetch('https://api.datamuse.com/words?ml=ringing+in+the+ears')
   .then(res => res.json())
@@ -65,7 +65,8 @@ fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_v
         <pre>{JSON.stringify(genres, null, 2)}</pre>
         {<ul>{genres.map(genre=><li>{genre.name}</li>)}</ul>}
         <p>Select genre...</p>
-        {<select onChange={handleSelectChange} defaultValue={28}>
+        {<select onChange={handleSelectChange}>
+          <option value="">Choose one...</option>
           {genres.map((genre, index)=>(
             <option key={index} value={genre.id}>
               {genre.name}
